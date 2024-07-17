@@ -1,14 +1,16 @@
 # Todolist-react
 
 ## Description
-This is a web-based contact app for users to add contacts of anyone.
+This is a to do list web dashboard that allows users to create, store , edit any tasks which they need
+
+## Features 
 
 ## Demo
-Link: https://www.youtube.com/watch?v=0jorhgK6fVM&list=PLhusV3ueKvupwJ2zIfKXp1mAo-nMAFKhH&index=5
+
 
 
 ## Technologies Used:
-* React
+* React (Next.js)
 * Spring Boot
 * Postman
 
