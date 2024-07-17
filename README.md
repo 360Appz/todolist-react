@@ -10,6 +10,7 @@ Link: https://www.youtube.com/watch?v=0jorhgK6fVM&list=PLhusV3ueKvupwJ2zIfKXp1mA
 ## Technologies Used:
 * React
 * Spring Boot
+* Postman
 
 
 ## Compatibility
@@ -18,12 +19,11 @@ Link: https://www.youtube.com/watch?v=0jorhgK6fVM&list=PLhusV3ueKvupwJ2zIfKXp1mA
 
 ## Technical Information
 * Visual Studio Code
-* Postman Web & Desktop (API testing, test whether data is sent/received) , Desktop is to connect local environment to web version
 * Backend
   *   https://github.com/360Appz/todolist-spring-boot
 
 
 ### References
-* https://www.youtube.com/watch?v=wtIvu085uU0
+
 
 
