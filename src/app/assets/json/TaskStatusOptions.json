@@ -1,0 +1,7 @@
+{
+    "statuses": {
+      "1": "Done",
+      "2": "Pending",
+      "3": "Overdue"
+    }
+  }

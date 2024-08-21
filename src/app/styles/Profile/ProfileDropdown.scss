@@ -1,0 +1,60 @@
+.menu {
+    position: absolute; /* Ensure the menu is absolutely positioned */
+    top: calc(100% + 8px); /* Adjust the top position to align under the icon */
+    right: 0; /* Align to the right of the parent */
+    width: 100%;
+    min-height: 100px;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: opacity 300ms ease, transform 300ms ease;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 14px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    right: 154px;
+    margin-top: 12px;
+}
+
+.menu ul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    background: #fff;
+    
+}
+
+.menu ul li {
+    list-style: none;
+    padding: 10px 20px;
+}
+
+.menu ul li:hover {
+    background: #eee;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
