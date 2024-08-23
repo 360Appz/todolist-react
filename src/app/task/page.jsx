@@ -1,4 +1,7 @@
 
+
+'use client'
+
 //Third Party Imports
 import { Container, Row , Col} from "react-bootstrap";
 
@@ -6,14 +9,14 @@ import { Container, Row , Col} from "react-bootstrap";
 //Internal Impports
 import SearchBar from "@/app/components/SearchBar/SearchBar";
 import Profile from "@/app/components/Profile/Profile";
-import TaskDisplayAll from "@/app/components/Task/TaskCard";
+import TaskDisplayAll from "@/app/components/Task/TaskDisplayAll";
 import TaskAdd from "@/app/components/Task/TaskAdd";
 import SortButton from "@/app/components/Sorting/SortButton";
 
 
-
 export default function TaskLayout () 
 {
+
     return (
         <>
              <Container > 

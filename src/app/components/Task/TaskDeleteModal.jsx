@@ -1,8 +1,8 @@
 'use client'
 
 //Third Party Imports
-import { Button, Form, Modal, Row } from 'react-bootstrap'
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 
 //Internal Impports
@@ -19,12 +19,14 @@ export default function TaskDeleteModal({ show, handleClose }) {
         </Modal.Header>
         <Modal.Body>Are you sure you want to delete this task</Modal.Body>
         <Modal.Footer>
+          
           <Button variant="primary" onClick={handleClose}>
             Cancel
           </Button>
           <Button variant="danger" onClick={handleClose}>
             Delete
           </Button>
+       
         </Modal.Footer>
       </Modal>
     </>

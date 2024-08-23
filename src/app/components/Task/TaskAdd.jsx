@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react/dist/iconify.js'
 import { Row } from 'react-bootstrap'
 
 //Internal Impports
-import '../../styles/AddTask/AddTaskButton.scss'
+import '@/app/styles/AddTask/AddTaskButton.scss'
 import { useState } from 'react';
 import TaskAddModal from './TaskAddModal';
 
@@ -14,20 +14,22 @@ import TaskAddModal from './TaskAddModal';
 export default function TaskAdd() {
 
     const [isAdded, setIsAdded] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
     const [showModal, setShowModal] = useState(false); //Add Task Modal
   
     const handleClick = () => {
-        if (isAdded && isLoading) {
-          setIsLoading(false);
-        } else if (isLoading) {
-          setIsAdded(true);
-        } else if (isAdded) {
+        if (isAdded ) {
+          // setIsLoading(false);
+        // } else if (isLoading) {
+        //   setIsAdded(true);
+        // } 
+        }
+        else if (isAdded) {
           setIsAdded(false);
         } else {
           setIsAdded(true);
-          setIsLoading(true);
+          // setIsLoading(true);
         }
         setShowModal(true); // Open the modal when the button is clicked
       };
@@ -41,7 +43,7 @@ export default function TaskAdd() {
     <>
     <div>
       <button type='button' 
-        className={`sf-btn add ${isAdded ? 'added' : ''} ${isLoading ? 'loading' : ''}`}
+        className={`sf-btn add ${isAdded ? 'added' : ''} `}
         onClick={handleClick}>
         <div className='icn-sf'>
           <span className='line line-1'></span>

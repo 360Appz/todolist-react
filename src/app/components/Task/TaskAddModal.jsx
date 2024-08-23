@@ -3,7 +3,6 @@
 //Third Party Imports
 import { Icon } from '@iconify/react/dist/iconify.js'
 
-import { TextField, InputAdornment } from '@mui/material'
 import { Button, Form, Modal, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -11,9 +10,9 @@ import * as yup from 'yup'
 
 //Dtae Time Picker
 import DateTimePicker from 'react-datetime-picker'
-import 'react-datetime-picker/dist/DateTimePicker.css'
-import 'react-calendar/dist/Calendar.css'
-import 'react-clock/dist/Clock.css'
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
 
 //Task Statuses Imports
 import { statuses } from '../../assets/json/TaskStatusOptions.json'

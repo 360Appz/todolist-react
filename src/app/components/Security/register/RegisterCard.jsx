@@ -39,7 +39,7 @@ export default function RegisterCard() {
 
   return (
     <>
-      <Card style={{width:"36em", height:'30em', borderRadius:"20px"}}>
+      <Card style={{width:"36em", height:'36em', borderRadius:"20px"}}>
         <div className='mt-5'>
         <Card.Body>
           <Card.Title className='d-flex justify-content-center'>Register</Card.Title>
@@ -48,20 +48,25 @@ export default function RegisterCard() {
             <Form.Group className='mb-3' controlId='formBasicEmail'>
               <Form.Label>Username</Form.Label>
               <Form.Control type='text' placeholder='Enter Username' />
+              <div style={{minHeight:'10px'}}>
               {errors.username && <p className='text-danger'>{errors.username.message}</p>}
+              </div>
             </Form.Group>
 
             {/* Password*/}
             <Form.Group className='mb-3' controlId='formBasicPassword'>
               <Form.Label>Password</Form.Label>
               <Form.Control type='password' placeholder='Password' />
+              <div style={{minHeight:'10px'}}>
               {errors.password && <p className='text-danger'>{errors.password.message}</p>}
+              </div>
             </Form.Group>
 
             {/* Email*/}
             <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
+        {errors.email && <p className='text-danger'>{errors.email.message}</p>}
       </Form.Group>
 
             <RegisterButton type="submit"/>
