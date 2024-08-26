@@ -111,7 +111,7 @@ const taskSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTasks.fulfilled, (state, action) => {
-        state.taskList = action.payload._embedded.taskDTOList;
+        state.taskList = action.payload._embedded?.taskDTOList || [];
         console.log("state.tasks", state.taskList)
         state.taskError = null;
       })

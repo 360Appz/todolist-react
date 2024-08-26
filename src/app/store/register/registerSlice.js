@@ -1,46 +1,44 @@
-// src/app/features/loginSlice.js
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import { login as loginApi } from '@/app/services/authService';
-import { AUTH_API } from '../../services/apiRoutes';
+import authService from '@/app/services/authService';
 
-export const register = createAsyncThunk('security/register', async ({ username, password, email }, { rejectWithValue }) => {
-  try 
-  {
-    const response = await axios.post(AUTH_API.REGISTER, { username, password, email});
-    return response.data.token; // Assuming the token is returned in response.data.token
-  } 
-  catch (error) {
-    return rejectWithValue('Register failed. Please check your registration details');
+export const registerProfile = createAsyncThunk(
+  'security/register',
+  async (userDetails, { rejectWithValue }) => {
+    try {
+      const jwtToken = await authService.registration(userDetails);
+      return jwtToken; // Returning the JWT token after registration
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
-});
+);
 
-const loginSlice = createSlice({
+const registerSlice = createSlice({
   name: 'register',
   initialState: {
     token: null,
-    loginError: null,
+    registrationError: null,
   },
   reducers: {
-    // logout: (state) => {
-    //   state.token = null;
-    //   localStorage.removeItem('jwtToken');
-    // },
+    logout: (state) => {
+      state.token = null;
+      localStorage.removeItem('jwtToken');
+    },
   },
   extraReducers: (builder) => {
-    // builder
-    //   .addCase(login.fulfilled, (state, action) => {
-    //     state.token = action.payload;
-    //     state.loginError = null;
-    //     localStorage.setItem('jwtToken', action.payload);
-    //   })
-    //   .addCase(login.rejected, (state, action) => {
-    //     state.token = null;
-    //     state.loginError = action.payload;
-    //   });
+    builder
+      .addCase(registerProfile.fulfilled, (state, action) => {
+        state.token = action.payload; // Store the JWT token in the state
+        localStorage.setItem('jwtToken', action.payload); // Store the JWT token in localStorage
+        state.registrationError = null; // Clear any previous errors
+      })
+      .addCase(registerProfile.rejected, (state, action) => {
+        state.token = null;
+        state.registrationError = action.payload || 'Registration failed';
+      });
   },
 });
 
-export const { logout } = loginSlice.actions;
+export const { logout } = registerSlice.actions;
 
-export default loginSlice.reducer;
+export default registerSlice.reducer;
