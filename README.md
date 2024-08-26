@@ -27,3 +27,5 @@ This is the frontend for the todolist app, which allows users to create , read, 
  - JWT Token
 
 ## References
+- https://www.figma.com/community/file/1287029163993360080/simple-todo-list-design (Design)
+- https://www.figma.com/community/file/940766544211535427/9-templates-login-pages (Design)
