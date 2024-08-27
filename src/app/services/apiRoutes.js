@@ -18,3 +18,9 @@ export const TASK_API = {
   DELETE_TASK: `${API_BASE_URL}/CRUD/deleteTask`,
  
 };
+
+//Search Tasks
+export const SEARCH_TASK_API = {
+  SEARCH_TASK: `${API_BASE_URL}/tasks/search`,
+ 
+};
