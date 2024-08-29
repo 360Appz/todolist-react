@@ -12,10 +12,10 @@ export const AUTH_API = {
 //Task CRUD API Routes
 export const TASK_API = {
   GET_ALL_TASK: `${API_BASE_URL}/CRUD/getAllTasks`,
-  GET_ALL_TASK_BY_ID:`${API_BASE_URL}/CRUD/getTaskById`,
+  GET_ALL_TASK_BY_ID : (id) =>`${API_BASE_URL}/CRUD/getTaskById/${id}`,
   ADD_TASK: `${API_BASE_URL}/CRUD/addTask`,
-  EDIT_TASK: `${API_BASE_URL}/CRUD/editTask`,
-  DELETE_TASK: `${API_BASE_URL}/CRUD/deleteTask`,
+  EDIT_TASK : (id) => `${API_BASE_URL}/CRUD/editTask/${id}`,
+  DELETE_TASK : (id) => `${API_BASE_URL}/CRUD/deleteTask/${id}`
  
 };
 

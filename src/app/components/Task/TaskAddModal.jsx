@@ -19,6 +19,10 @@ import { statuses } from '../../assets/json/TaskStatusOptions.json'
 
 //Internal Impports
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/navigation'
+import { addTask } from '@/app/store/tasks/taskSlice'
+
 
 const schema = yup
   .object({
@@ -30,7 +34,11 @@ const schema = yup
   .required()
 
 export default function TaskAddModal({ show, handleClose }) {
+
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [dateTime, setDateTime] = useState(new Date())
+
 
   const {
     register,
@@ -45,12 +53,22 @@ export default function TaskAddModal({ show, handleClose }) {
   // Manually set the value of dueDate in the form
   const handleDateChange = date => {
     setDateTime(date)
-    console.log("date",date)
+    // console.log("date",date)
     setValue("dueDate", date, { shouldValidate: true }); 
   }
 
-  const onSubmit = data => {
+  const onSubmit = async (data) => {
     console.log(data)
+    try 
+    {
+      await dispatch(addTask(data)).unwrap();
+      router.push('/task');
+    } 
+    catch (error) {
+      console.log("Login card error", error)
+      // setLoginError(error);
+      // setShowToast(true);
+    }
   }
 
   // console.log(watch('example')) // watch input value by passing the name of it

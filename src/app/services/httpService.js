@@ -39,4 +39,11 @@ http.interceptors.response.use(
   }
 );
 
+// Export functions for different HTTP methods
+export const httpGet = (url, config = {}) => http.get(url, config);
+export const httpPost = (url, config, data = {}) => http.post(url, config, data);
+export const httpPut = (url, config , data= {}) => http.put(url, config, data);
+export const httpDelete = (url, config, data = {}) => http.delete(url, config, data);
+
+
 export default http;
