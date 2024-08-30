@@ -21,7 +21,7 @@ export const login = async (credentials) => {
 
   } catch (error) {
         // Log the exact error for debugging
-        console.log("error.response.data", error.response?.data);
+        // console.log("error.response.data", error.response?.data);
 
         // Throw the actual error message returned by the API
         throw error.response?.data || 'Login failed';

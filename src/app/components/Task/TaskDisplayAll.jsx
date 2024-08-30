@@ -26,7 +26,6 @@ export default function TaskDisplayAll() {
 
   const dispatch = useDispatch();
 
-  console.log("Task error display all", taskError)
 
     // Determine which list to display: searchResults if available, otherwise taskList
     const tasksToDisplay = searchResults.length > 0 ? searchResults : taskList;
