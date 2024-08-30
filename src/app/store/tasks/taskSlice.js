@@ -25,7 +25,7 @@ export const fetchTasks = createAsyncThunk(
 
 
 //Fetch Task By ID
-export const fetchTasksByID = createAsyncThunk('/CRUD/getTaskById', async (_, { rejectWithValue, getState }) => {
+export const fetchTasksByID = createAsyncThunk('/CRUD/getTaskById', async (id, { rejectWithValue, getState }) => {
     const { token } = getState().login; // Get the token from the login state
     if (!token) {
       return rejectWithValue('No token available');
@@ -66,7 +66,7 @@ export const addTask = createAsyncThunk('/CRUD/addTask', async ( taskData, { rej
 
 
 //Edit Task
-export const editTask = createAsyncThunk('/CRUD/editTask', async (_, { rejectWithValue, getState }) => {
+export const editTask = createAsyncThunk('/CRUD/editTask', async ({id, taskData}, { rejectWithValue, getState }) => {
     const { token } = getState().login; // Get the token from the login state
     if (!token) {
       return rejectWithValue('No token available');
@@ -74,7 +74,7 @@ export const editTask = createAsyncThunk('/CRUD/editTask', async (_, { rejectWit
     
     try 
     {
-      const response = await httpPut(TASK_API.EDIT_TASK(id));
+      const response = await httpPut(TASK_API.EDIT_TASK(id), taskData);
       return response.data;
     } 
     catch (error) 
@@ -86,7 +86,7 @@ export const editTask = createAsyncThunk('/CRUD/editTask', async (_, { rejectWit
 
 
 //Delete Task
-export const deleteTask = createAsyncThunk('/CRUD/deleteTask', async (_, { rejectWithValue, getState }) => {
+export const deleteTask = createAsyncThunk('/CRUD/deleteTask', async ({id}, { rejectWithValue, getState }) => {
     const { token } = getState().login; // Get the token from the login state
     if (!token) {
       return rejectWithValue('No token available');
@@ -94,7 +94,7 @@ export const deleteTask = createAsyncThunk('/CRUD/deleteTask', async (_, { rejec
     
     try 
     {
-      const response = await httpDelete(TASK_API.DELETE_TASK(id));
+      const response = await httpDelete(`${TASK_API.DELETE_TASK}/${id}`);
       return response.data;
     } 
     catch (error) 
@@ -108,6 +108,7 @@ const taskSlice = createSlice({
   name: 'tasks',
   initialState: {
     taskList: [],
+    taskListById:[],
     taskError: null,
   },
   extraReducers: (builder) => {
@@ -119,6 +120,9 @@ const taskSlice = createSlice({
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         state.taskError = action.payload;
+      })
+      .addCase(fetchTasksByID.fulfilled, (state, action) => {
+        state.taskListById = action.payload;
       });
       // .addCase(addTask.fulfilled, (state, action) => {
       //   state.taskList.push(action.payload); // Add the new task to the list

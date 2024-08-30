@@ -67,7 +67,7 @@ export default function TaskDisplayAll() {
           <Carousel
             swipeable={true}
             // draggable={true}
-            showDots={true}
+            showDots={false}
             responsive={responsive}
             infinite={true}
           >

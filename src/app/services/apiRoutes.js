@@ -15,7 +15,7 @@ export const TASK_API = {
   GET_ALL_TASK_BY_ID : (id) =>`${API_BASE_URL}/CRUD/getTaskById/${id}`,
   ADD_TASK: `${API_BASE_URL}/CRUD/addTask`,
   EDIT_TASK : (id) => `${API_BASE_URL}/CRUD/editTask/${id}`,
-  DELETE_TASK : (id) => `${API_BASE_URL}/CRUD/deleteTask/${id}`
+  DELETE_TASK: `${API_BASE_URL}/CRUD/deleteTask`
  
 };
 

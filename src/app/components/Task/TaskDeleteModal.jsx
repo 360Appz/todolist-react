@@ -6,10 +6,27 @@ import Modal from 'react-bootstrap/Modal';
 
 
 //Internal Impports
-import { useState } from 'react'
+import { deleteTask, fetchTasks } from '@/app/store/tasks/taskSlice';
+import { useDispatch } from 'react-redux';
 
 
-export default function TaskDeleteModal({ show, handleClose }) {
+export default function TaskDeleteModal({ show, handleClose , taskDetailsFull }) {
+
+  const dispatch = useDispatch();
+
+  const handleDeleteFunction = async () => {
+    try 
+    {
+      await dispatch(deleteTask({id:taskDetailsFull.taskId})).unwrap();
+      handleClose(); // Close the modal upon successful submission
+      dispatch(fetchTasks({ page: 0, size: 10 })); // Refresh the task list
+    } 
+    catch (error) {
+      console.log("Delete Task Error", error)
+      // setLoginError(error);
+      // setShowToast(true);
+    }
+  }
 
   return (
     <>
@@ -23,7 +40,7 @@ export default function TaskDeleteModal({ show, handleClose }) {
           <Button variant="primary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={handleDeleteFunction}>
             Delete
           </Button>
        

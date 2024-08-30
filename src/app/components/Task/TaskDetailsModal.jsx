@@ -19,7 +19,9 @@ import 'react-clock/dist/Clock.css'
 import { statuses } from '../../assets/json/TaskStatusOptions.json'
 
 //Internal Impports
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { editTask, fetchTasks, fetchTasksByID } from '@/app/store/tasks/taskSlice'
+import { useDispatch } from 'react-redux'
 
 const schema = yup
   .object({
@@ -30,8 +32,10 @@ const schema = yup
   })
   .required()
 
-export default function TaskDetailsModal({ show, handleClose }) {
+export default function TaskDetailsModal({ show, handleClose , taskDetailsFull}) {
+  const dispatch = useDispatch();
   const [dateTime, setDateTime] = useState(new Date())
+
 
   const {
     register,
@@ -43,15 +47,44 @@ export default function TaskDetailsModal({ show, handleClose }) {
     resolver: yupResolver(schema)
   })
 
-  // Manually set the value of dueDate in the form
+  // console.log("Task ID", task.taskId)
+  useEffect(() => {
+      dispatch(fetchTasksByID(taskDetailsFull.taskId))
+      .unwrap()
+      .then((taskDetails) => {
+
+        // Set the form fields with the fetched task details
+        setValue('title', taskDetails.title);
+        setValue('description', taskDetails.description);
+        setDateTime(new Date(taskDetails.dueDate)); // Update the date state
+        setValue('dueDate', new Date(taskDetails.dueDate)); // Set the due date
+        setValue('status', taskDetails.status);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch task details:', error);
+      });
+    }, []);
+
+  // Manually set the value & format of dueDate in the form (DD-MM-YY , Time)
   const handleDateChange = date => {
     setDateTime(date)
-    console.log("date",date)
+
     setValue("dueDate", date, { shouldValidate: true }); 
   }
 
-  const onSubmit = data => {
-    console.log(data)
+  const onSubmit = async (task) => {
+    
+    try 
+    {
+      await dispatch(editTask({id:taskDetailsFull.taskId, taskData:task})).unwrap();
+      handleClose(); // Close the modal upon successful submission
+      dispatch(fetchTasks({ page: 0, size: 10 })); // Refresh the task list
+    } 
+    catch (error) {
+      console.log("Edit Task Error", error)
+      // setLoginError(error);
+      // setShowToast(true);
+    }
   }
 
   // console.log(watch('example')) // watch input value by passing the name of it

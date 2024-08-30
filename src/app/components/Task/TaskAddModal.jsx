@@ -21,7 +21,7 @@ import { statuses } from '../../assets/json/TaskStatusOptions.json'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import { addTask } from '@/app/store/tasks/taskSlice'
+import { addTask, fetchTasks } from '@/app/store/tasks/taskSlice'
 
 
 const schema = yup
@@ -36,7 +36,7 @@ const schema = yup
 export default function TaskAddModal({ show, handleClose }) {
 
   const dispatch = useDispatch();
-  const router = useRouter();
+  // const router = useRouter();
   const [dateTime, setDateTime] = useState(new Date())
 
 
@@ -62,7 +62,8 @@ export default function TaskAddModal({ show, handleClose }) {
     try 
     {
       await dispatch(addTask(data)).unwrap();
-      router.push('/task');
+      handleClose(); // Close the modal upon successful submission
+      dispatch(fetchTasks({ page: 0, size: 10 })); // Refresh the task list
     } 
     catch (error) {
       console.log("Login card error", error)

@@ -10,7 +10,7 @@ import moment from 'moment';
 //Internal Impports
 import TaskDetailsModal from './TaskDetailsModal'
 import TaskDeleteModal from './TaskDeleteModal'
-import { useState , useEffect} from 'react'
+import { useState } from 'react'
 
 
 
@@ -60,8 +60,8 @@ export default function TaskCard({task}) {
      
         </Card.Body>
       </Card>
-      <TaskDetailsModal show={showModal} handleClose={handleModalClose} />
-      <TaskDeleteModal show={showDeleteModal} handleClose={handleDeleteModalClose} />
+      {showModal && <TaskDetailsModal show={showModal} handleClose={handleModalClose} taskDetailsFull={task} />}
+      {showDeleteModal && <TaskDeleteModal show={showDeleteModal} handleClose={handleDeleteModalClose} taskDetailsFull={task}/>}
     </>
   )
 }
