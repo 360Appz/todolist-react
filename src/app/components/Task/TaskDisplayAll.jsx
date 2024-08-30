@@ -64,9 +64,9 @@ export default function TaskDisplayAll() {
       <Row className='d-flex justify-content-center'>
         {tasksToDisplay && tasksToDisplay.length > 0 ? (
           <Carousel
+            arrows={false}
             swipeable={true}
-            // draggable={true}
-            showDots={false}
+            draggable={true}
             responsive={responsive}
             infinite={true}
           >

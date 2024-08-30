@@ -2,8 +2,6 @@
 @import 'bootstrap/dist/css/bootstrap.css';
 
 
-
-
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -116,4 +114,14 @@ a {
 /* DateTime Picker */
 .react-datetime-picker__wrapper {
   border: none !important;
+}
+
+.modal-footer {
+  flex-wrap: nowrap; 
+
+}
+
+.react-multi-carousel-track 
+{
+  gap: 1em;
 }
